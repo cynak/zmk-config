@@ -1,0 +1,34 @@
+/* Sofle Choc v2.1 — nice!nano v2 (nRF52840) wired split + OLED + RGB */
+
+&i2c0 {          /* OLEDs use I2C SSD1306 via Sofle shield */
+    status = "okay";
+};
+
+/* ----- UART for WIRED SPLIT over TRRS -----
+ * TRRS must carry: VCC, GND, TX, RX
+ * Cross TX<->RX between halves.
+ * Example pins here: D2=TX (P0.17), D3=RX (P0.15) on nice!nano v2.
+ * Baud: 1,000,000
+ */
+&pro_micro_serial {
+    status = "okay";
+    current-speed = <1000000>;
+    /* If your board already binds pro_micro_serial to P0.17/P0.15, this is enough.
+     * Otherwise, bind pins via pinctrl on the SoC UART instance.
+     */
+};
+
+/* ----- WS2812/SK6812 LED chain -----
+ * Update:
+ *  - gpios: to match the Sofle LED DIN pad you wired (common: D4 -> P0.22)
+ *  - chain-length: LEDs on THIS HALF (e.g., 26 if 52 total)
+ */
+&pro_micro {
+    ws2812: ws2812@0 {
+        compatible = "worldsemi,ws2812";
+        label = "WS2812";
+        gpios = <&gpio0 22 0>;   /* Example: Pro Micro D4 -> nRF P0.22. Verify your PCB. */
+        chain-length = <26>;     /* Adjust to your actual per-half LED count. */
+        status = "okay";
+    };
+};
