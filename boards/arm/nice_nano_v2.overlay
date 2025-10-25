@@ -38,5 +38,8 @@
         gpios = <&gpio0 22 0>;   /* P0.22 (022) */
         chain-length = <26>;     /* Adjust to your actual per-half LED count. */
         status = "okay";
+        /* Most common for WS2812/SK6812 */
+        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
+
     };
 };
