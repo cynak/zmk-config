@@ -1,26 +1,16 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    behaviors {
-        enc_cw: enc_cw {
-            compatible = "zmk,behavior-tap";
-            label = "ENC_CW";
-            #binding-cells = <0>;
-            bindings = <&kp PG_UP>;
-        };
-        enc_ccw: enc_ccw {
-            compatible = "zmk,behavior-tap";
-            label = "ENC_CCW";
-            #binding-cells = <0>;
-            bindings = <&kp PG_DN>;
-        };
-    };
+    /* No custom tap behaviors needed for simple encoder actions.
+     * We'll set encoder rotation via sensor-bindings below.
+     */
 };
 
-&encoder_left  { bindings = <&enc_ccw>, <&enc_cw>;  };
-&encoder_right { bindings = <&enc_ccw>, <&enc_cw>;  };
+/* Sofle encoder nodes are labeled by the shield as &left_encoder / &right_encoder */
+&left_encoder  { sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;  };
+&right_encoder { sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;  };
 
-/* Add these to some layer in your keymap as needed:
+/* RGB helpers you can still place on a layer as key bindings:
    &rgb_ug_toggle  &rgb_ug_hue_up  &rgb_ug_hue_down
    &rgb_ug_bri_up  &rgb_ug_bri_down
 */
