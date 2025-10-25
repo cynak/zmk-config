@@ -17,43 +17,47 @@
 
 / {
     /* --------- Encoder rotate behaviors for RGB on ADJUST --------- */
-    behaviors {
-        enc_hue: enc_hue {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "ENC_HUE";
-            #binding-cells = <0>;
-            bindings = <&rgb_ug_hue_up>, <&rgb_ug_hue_down>;
-        };
-
-        enc_sat: enc_sat {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "ENC_SAT";
-            #binding-cells = <0>;
-            bindings = <&rgb_ug_sat_up>, <&rgb_ug_sat_down>;
-        };
-
-        enc_bri: enc_bri {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "ENC_BRI";
-            #binding-cells = <0>;
-            bindings = <&rgb_ug_bri_up>, <&rgb_ug_bri_down>;
-        };
-
-        /* Optional single-tap helpers (use if encoder presses are wired) */
-        enc_eff_next: enc_eff_next {
-            compatible = "zmk,behavior-tap";
-            label = "ENC_EFF_NEXT";
-            #binding-cells = <0>;
-            bindings = <&rgb_ug_effect_next>;
-        };
-
-        enc_toggle: enc_toggle {
-            compatible = "zmk,behavior-tap";
-            label = "ENC_TOGGLE";
-            #binding-cells = <0>;
-            bindings = <&rgb_ug_toggle>;
-        };
+behaviors {
+    enc_hue: enc_hue {
+        compatible = "zmk,behavior-sensor-rotate";
+        label = "ENC_HUE";
+        #binding-cells = <0>;
+        /* Hue: increase, decrease */
+        bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
     };
+
+    enc_sat: enc_sat {
+        compatible = "zmk,behavior-sensor-rotate";
+        label = "ENC_SAT";
+        #binding-cells = <0>;
+        /* Saturation: increase, decrease */
+        bindings = <&rgb_ug RGB_SAI>, <&rgb_ug RGB_SAD>;
+    };
+
+    enc_bri: enc_bri {
+        compatible = "zmk,behavior-sensor-rotate";
+        label = "ENC_BRI";
+        #binding-cells = <0>;
+        /* Brightness: increase, decrease */
+        bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+    };
+
+    /* Optional encoder-press helpers (if your encoder switches are wired) */
+    enc_eff_next: enc_eff_next {
+        compatible = "zmk,behavior-tap";
+        label = "ENC_EFF_NEXT";
+        #binding-cells = <0>;
+        bindings = <&rgb_ug RGB_EFF>;   /* Effect next */
+    };
+
+    enc_toggle: enc_toggle {
+        compatible = "zmk,behavior-tap";
+        label = "ENC_TOGGLE";
+        #binding-cells = <0>;
+        bindings = <&rgb_ug RGB_TOG>;   /* Toggle on/off */
+    };
+};
+
 
     // Activate ADJUST layer by pressing raise and lower
     conditional_layers {
