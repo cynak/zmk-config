@@ -1,12 +1,24 @@
+#include <dt-bindings/zmk/keys.h>
+
 / {
     behaviors {
-        enc_cw: enc_cw { compatible = "zmk,behavior-tap"; label = "ENC_CW";  bindings = <&kp PG_UP>; };
-        enc_ccw: enc_ccw { compatible = "zmk,behavior-tap"; label = "ENC_CCW"; bindings = <&kp PG_DN>; };
+        enc_cw: enc_cw {
+            compatible = "zmk,behavior-tap";
+            label = "ENC_CW";
+            #binding-cells = <0>;
+            bindings = <&kp PG_UP>;
+        };
+        enc_ccw: enc_ccw {
+            compatible = "zmk,behavior-tap";
+            label = "ENC_CCW";
+            #binding-cells = <0>;
+            bindings = <&kp PG_DN>;
+        };
     };
 };
 
-&encoder_left  { bindings = <&enc_ccw &enc_cw>;  };
-&encoder_right { bindings = <&enc_ccw &enc_cw>;  };
+&encoder_left  { bindings = <&enc_ccw>, <&enc_cw>;  };
+&encoder_right { bindings = <&enc_ccw>, <&enc_cw>;  };
 
 /* Add these to some layer in your keymap as needed:
    &rgb_ug_toggle  &rgb_ug_hue_up  &rgb_ug_hue_down
