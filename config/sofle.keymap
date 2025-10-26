@@ -20,39 +20,34 @@
 behaviors {
     enc_hue: enc_hue {
         compatible = "zmk,behavior-sensor-rotate";
-        label = "ENC_HUE";
-        #binding-cells = <0>;
+        #sensor-binding-cells = <0>;
         /* Hue: increase, decrease */
         bindings = <&rgb_ug RGB_HUI>, <&rgb_ug RGB_HUD>;
     };
 
     enc_sat: enc_sat {
         compatible = "zmk,behavior-sensor-rotate";
-        label = "ENC_SAT";
-        #binding-cells = <0>;
+        #sensor-binding-cells = <0>;
         /* Saturation: increase, decrease */
         bindings = <&rgb_ug RGB_SAI>, <&rgb_ug RGB_SAD>;
     };
 
     enc_bri: enc_bri {
         compatible = "zmk,behavior-sensor-rotate";
-        label = "ENC_BRI";
-        #binding-cells = <0>;
+        #sensor-binding-cells = <0>;
         /* Brightness: increase, decrease */
         bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
     };
 
-    /* Optional encoder-press helpers (if your encoder switches are wired) */
+    /* Optional encoder-press helpers (keep #binding-cells for tap behaviors) */
     enc_eff_next: enc_eff_next {
         compatible = "zmk,behavior-tap";
-        label = "ENC_EFF_NEXT";
         #binding-cells = <0>;
         bindings = <&rgb_ug RGB_EFF>;   /* Effect next */
     };
 
     enc_toggle: enc_toggle {
         compatible = "zmk,behavior-tap";
-        label = "ENC_TOGGLE";
         #binding-cells = <0>;
         bindings = <&rgb_ug RGB_TOG>;   /* Toggle on/off */
     };
