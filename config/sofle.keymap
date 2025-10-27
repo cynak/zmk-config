@@ -96,7 +96,7 @@
             /* Your original encoders: Vol up/down (left), Page up/down (right) */
 
             sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
                 <&inc_dec_kp UP_ARROW DOWN_ARROW>;
         };
 
@@ -119,7 +119,7 @@
             >;
 
             sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp C_BRIGHTNESS_DEC C_BRIGHTNESS_INC>,
                 <&inc_dec_kp LEFT RIGHT>;
         };
 
